@@ -45,10 +45,12 @@ ACK_F_TEXT: {
         t/swamp/html.htm
         t/swamp/html.html
         t/swamp/incomplete-last-line.txt
+        t/swamp/Capfile
         t/swamp/Makefile
         t/swamp/Makefile.PL
         t/swamp/javascript.js
         t/swamp/not-an-#emacs-workfile#
+        t/swamp/notaCapfile
         t/swamp/notaMakefile
         t/swamp/notaRakefile
         t/swamp/options.pl

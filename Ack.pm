@@ -77,6 +77,7 @@ BEGIN {
         asm         => [qw( asm s )],
         batch       => [qw( bat cmd )],
         binary      => q{Binary files, as defined by Perl's -B op (default: off)},
+        cap         => q{Capfiles},
         cc          => [qw( c h xs )],
         cfmx        => [qw( cfc cfm cfml )],
         clojure     => [qw( clj )],
@@ -503,6 +504,7 @@ sub filetypes {
     my $lc_basename = lc $basename;
     return ('make',TEXT)        if $lc_basename eq 'makefile' || $lc_basename eq 'gnumakefile';
     return ('rake','ruby',TEXT) if $lc_basename eq 'rakefile';
+    return ('cap','ruby',TEXT)  if $lc_basename eq 'capfile';
 
     # If there's an extension, look it up
     if ( $filename =~ m{\.([^\.$dir_sep_chars]+)$}o ) {

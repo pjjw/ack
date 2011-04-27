@@ -21,6 +21,7 @@ my $hh = [qw(
 my $ruby = [qw(
     t/etc/shebang.rb.xxx
     t/swamp/Rakefile
+    t/swamp/Capfile
     t/swamp/sample.rake
 )];
 

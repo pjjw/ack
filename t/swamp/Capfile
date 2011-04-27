@@ -1,0 +1,41 @@
+set :application, 'foo'
+set :deploy_to, "/opt/deployments/#{application}"
+set :repository, "https://svn.shortbus.org/#{application}"
+
+set :user, "admin"
+set :runner, "admin"
+set :admin_runner, "admin"
+
+# Don't attempt to load ssh_config files from disk.  On Mac, they're
+# empty by default.
+set :ssh_options, { :config => false }
+
+set :default_stage, "development"
+require 'capistrano/ext/multistage'
+
+load 'deploy'
+namespace :deploy do
+
+  task :default do
+    # pay the overhead of doing a setup each time.
+    # since this usually gets called only when we're adding a new box anyways.
+    setup # add this from the default def'n of default
+    needs_deploying = true
+    begin
+    needs_deploying = ( ( real_revision.to_i > current_revision.to_i ) || ENV['FORCE'] )
+    rescue
+    end
+    if( needs_deploying )
+      # TODO: double-check that this actually runs the check on each box.
+      update
+      restart
+    end
+  end
+  task :finalize_update do
+    # noop
+  end
+  task :restart do
+    # noop
+  end
+
+end
